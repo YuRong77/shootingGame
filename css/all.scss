@@ -1,0 +1,352 @@
+$gameBg: #090722;
+$smoke: #f8f8f8;
+$white: #ffffff;
+$yellow: #d3a116;
+$yellowHv: #b98d13;
+$yellowBorder: #f6d551;
+$btnRed: #e90101;
+$btnRedHv: #b60000;
+$backBtn: #654a99;
+$backBtnHv: #543c80;
+$buy: #8b59ff;
+$buyHv: #6842c0;
+$dashboardBg: #384872;
+$dashboardBd: #a1a1a1;
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei",
+    "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  height: 100vh;
+  background: $gameBg;
+  user-select: none;
+}
+#app {
+  width: 100%;
+  height: 100%;
+}
+.gameboard {
+  max-width: 1200px;
+  height: 750px;
+  background-image: url(../img/bg.png);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: none;
+  margin: auto;
+}
+.mouse {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-image: url(../img/aim0.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  display: none;
+  z-index: 100;
+}
+.beforegame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  & h1 {
+    color: $smoke;
+    text-align: center;
+    font-family: "Jokerman";
+    font-size: 96px;
+    text-shadow: 0 6px 10px #000000d0;
+    margin: 100px 0 180px 0;
+    animation-name: big;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+  }
+  & p {
+    color: $white;
+    margin-bottom: 70px;
+    text-shadow: 0 3px 6px #000000d0;
+    animation-name: fade;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+  }
+}
+@keyframes big {
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes fade {
+  40% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.gamestart {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: auto;
+  border: none;
+  border-radius: 5px;
+  background: $yellow;
+  color: $white;
+  z-index: 10;
+  cursor: none;
+  transition: all 0.5s;
+  &:hover {
+    background: $yellowHv;
+  }
+}
+.inthegame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  & h3 {
+    color: $white;
+    margin: 10px 0;
+  }
+}
+.score {
+  font-size: 70px;
+  color: $white;
+}
+.bat {
+  width: 1000px;
+  height: 550px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.site {
+  flex: 20%;
+}
+.monster {
+  background-image: url(../img/bat.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto;
+  width: 165px;
+  height: 125px;
+  opacity: 0;
+  transition: opacity 0.3s, transform 4s;
+  &.fadein {
+    opacity: 1;
+  }
+}
+.none {
+  display: none;
+}
+.countdown {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  font-family: "Jokerman";
+  font-size: 200px;
+  color: $yellowBorder;
+}
+.aftergame {
+  width: 100%;
+  height: 100%;
+}
+.scoreboard {
+  width: 300px;
+  height: 490px;
+  background: $yellow;
+  border: 5px solid $yellowBorder;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px #000000b7;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 15px;
+  box-sizing: border-box;
+  & h3 {
+    font-size: 30px;
+    font-weight: bold;
+    color: $white;
+    margin: 0 0 15px 0;
+  }
+}
+.scorebox,
+.scorebox2 {
+  background: $smoke;
+  border-radius: 10px;
+  margin-bottom: 35px;
+  padding: 5px 0;
+  & p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+.endscore {
+  font-size: 70px;
+  color: $btnRed;
+}
+.endbestScore {
+  font-size: 60px;
+  color: $yellow;
+}
+.btn {
+  display: flex;
+  justify-content: space-between;
+}
+.again {
+  width: 170px;
+  padding: 15px 0;
+  color: $white;
+  background: $btnRed;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  outline: none;
+  cursor: none;
+  &:hover {
+    background: $btnRedHv;
+  }
+}
+.home {
+  width: 80px;
+  padding: 15px 0;
+  color: $white;
+  background: $backBtn;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  outline: none;
+  cursor: none;
+  &:hover {
+    background: $backBtnHv;
+  }
+}
+.bullet {
+  list-style: none;
+  display: flex;
+  position: absolute;
+  right: 30px;
+  bottom: 0;
+  & li {
+    margin-right: 10px;
+  }
+}
+.setting {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 30px;
+  width: 280px;
+  height: 750px;
+}
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  background: $dashboardBg;
+  border-radius: 5px;
+  border: 1px solid $dashboardBd;
+  padding: 10px;
+  margin-bottom: 30px;
+  & h4 {
+    color: $white;
+    margin: 10px 0;
+  }
+}
+.dashboard .point,
+.dashboard .bestScore {
+  color: $white;
+  font-size: 40px;
+  text-align: center;
+}
+.store {
+  background: $dashboardBg;
+  border-radius: 5px;
+  border: 1px solid $dashboardBd;
+  padding: 10px;
+  margin-bottom: 30px;
+  & h3 {
+    color: $white;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid $dashboardBd;
+    padding-bottom: 30px;
+  }
+  & p {
+    color: $white;
+  }
+  & ul {
+    list-style: none;
+    padding: 0;
+  }
+  & li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}
+.buyAim {
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  background: $yellow;
+  padding: 5px 10px;
+  &:active {
+    background: $yellowHv;
+  }
+}
+.chooseAim {
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  background: $buy;
+  padding: 5px 10px;
+  &:active {
+    background: $buyHv;
+  }
+}
+.gameset {
+  background: $dashboardBg;
+  border-radius: 5px;
+  border: 1px solid $dashboardBd;
+  padding: 10px;
+  margin-bottom: 30px;
+  & h3 {
+    color: $white;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid $dashboardBd;
+    padding-bottom: 30px;
+  }
+}
+.setVolume {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+.minus,
+.plus {
+  width: 32px;
+  color: $white;
+  background: $yellow;
+  border: none;
+  border-radius: 50%;
+  &:active {
+    background: $yellowHv;
+  }
+}
+.volume {
+  color: $white;
+  margin: 0 20px;
+}

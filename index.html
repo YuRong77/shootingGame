@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/all.css" />
   </head>
   <body>
     <div id="app">
@@ -81,7 +81,7 @@
             <li>
               <img src="./img/aim1.png" alt="" />
               <p>20點</p>
-              <button class="buyAim" @click="buyAim(1,5)" v-if="!aimStatus[1]">
+              <button class="buyAim" @click="buyAim(1,20)" v-if="!aimStatus[1]">
                 購買
               </button>
               <button
@@ -95,7 +95,7 @@
             <li>
               <img src="./img/aim2.png" alt="" />
               <p>40點</p>
-              <button class="buyAim" @click="buyAim(2,6)" v-if="!aimStatus[2]">
+              <button class="buyAim" @click="buyAim(2,40)" v-if="!aimStatus[2]">
                 購買
               </button>
               <button

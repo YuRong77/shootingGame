@@ -1,4 +1,4 @@
-let vue = new Vue({
+let app = new Vue({
   el: "#app",
   data: {
     timeUp: true,
