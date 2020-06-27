@@ -24,7 +24,7 @@ body,html{
     position: absolute;
     width: 80px;
     height: 80px;
-    background-image: url(../img/aim1.png);
+    background-image: url(../img/aim0.png);
     background-position: center;
     background-repeat: no-repeat;
     pointer-events: none;
@@ -94,7 +94,7 @@ body,html{
     width: 100%;
     height: 100%;
     text-align: center;
-    display: none;
+    /* display: none; */
 }
 .inthegame h3{
     color: white;
@@ -133,6 +133,9 @@ body,html{
 .monster.fadein{
     opacity: 1;
 }
+.none{
+    display: none;
+}
 .countdown{
     position: absolute;
     top: 50%;
@@ -156,7 +159,7 @@ body,html{
 .aftergame{
     width: 100%;
     height: 100%;
-    display: none;
+    /* display: none; */
 }
 .scoreboard{
     width: 300px;   
@@ -180,7 +183,7 @@ body,html{
     margin:0 0 15px 0;
 } 
 .scorebox,.scorebox2{
-    background: white;
+    background: whitesmoke;
     border-radius: 10px;
     margin-bottom: 35px;
     padding: 5px 0;
@@ -302,20 +305,26 @@ body,html{
     background: #d3a116;
     padding: 5px 10px;
 }
-.defaultAim{
+.buyAim:active{
+    background: #ac8211;
+}
+/* .defaultAim{
     color: white;
     border: none;
     border-radius: 5px;
     background: #8b59ff;
     padding: 5px 10px;
-}
+} */
 .chooseAim{
     color: white;
     border: none;
     border-radius: 5px;
     background: #8b59ff;
     padding: 5px 10px;
-    display: none;
+    /* display: none; */
+}
+.chooseAim:active{
+    background: #6842c0;
 }
 .gameset{
     background: #384872;
@@ -336,17 +345,7 @@ body,html{
     justify-content: center;
     margin: 10px 0;
 }
-.minus{
-    width: 32px;
-    color: white;
-    background: #d3a116;
-    border: none;
-    border-radius: 50%;
-}
-.volume{
-    color: white;
-    margin: 0 20px;
-}
+.minus,
 .plus{
     width: 32px;
     color: white;
@@ -354,3 +353,18 @@ body,html{
     border: none;
     border-radius: 50%;
 }
+.minus:active,
+.plus:active{
+    background: #ac8211;
+}
+.volume{
+    color: white;
+    margin: 0 20px;
+}
+/* .plus{
+    width: 32px;
+    color: white;
+    background: #d3a116;
+    border: none;
+    border-radius: 50%;
+} */

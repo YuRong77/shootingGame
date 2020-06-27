@@ -1,97 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    <div class="mouse"></div>
-    <div class="gameboard">
-        <div class="beforegame">
-            <h1 class="gametitle">Monster hunting</h1>
-            <p>點擊滑鼠左鍵開始射擊</p>
-            <button class="gamestart">遊戲開始</button>
+    <link rel="shortcut icon" href="#" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="mouse" ref="mouse"></div>
+      <div class="gameboard" @mousemove="mouseMove" @mouseleave="mouseLeave">
+        <div class="beforegame" v-if="timeUp && !scoreBoard">
+          <h1 class="gametitle">Monster hunting</h1>
+          <p>點擊滑鼠左鍵開始射擊</p>
+          <button class="gamestart" @click="startGame">遊戲開始</button>
         </div>
-        <div class="inthegame">
-            <h3>分數</h3>
-            <div class="score">0</div>
-            <!-- <div class="best">
-                歷史最高 : 
-                <span class="bestScore"></span>
-            </div> -->
-            <div class="bat"></div>
-            <ul class="bullet"></ul>
-            <div class="countdown"></div>
-        </div>
-        <div class="aftergame">
-            <div class="scoreboard">
-                <h3>遊戲結束</h3>
-                <div class="scorebox">
-                    <p>分數</p>
-                    <div class="endscore">0</div>
-                </div>
-                <div class="scorebox2">
-                    <p>歷史最高</p>
-                    <div class="endbestScore">0</div>
-                </div>
-                <div class="btn">
-                    <button class="again"><i class="fas fa-redo-alt"></i> 再來一次</button>
-                    <button class="home">返回</button>
-                </div>
+        <div class="inthegame" :class="{'none' : timeUp}" @click="shooting">
+          <h3>分數</h3>
+          <div class="score">{{score}}</div>
+          <div class="bat">
+            <div class="site" v-for="n in 15">
+              <div
+                class="monster"
+                :class="{'fadein': monsterStatus[n-1]==true}"
+                @click="clickHandler(n-1)"
+              ></div>
             </div>
+          </div>
+          <ul class="bullet">
+            <li v-for="n in bulletQty">
+              <img src="./img/bullet.png" alt="" />
+            </li>
+          </ul>
+          <div class="countdown" v-if="countdown > 0">{{countdown}}</div>
         </div>
-    </div>
-    <div class="setting">
+        <div class="aftergame" :class="{'none' : !scoreBoard}">
+          <div class="scoreboard">
+            <h3>遊戲結束</h3>
+            <div class="scorebox">
+              <p>分數</p>
+              <div class="endscore">{{score}}</div>
+            </div>
+            <div class="scorebox2">
+              <p>歷史最高</p>
+              <div class="endbestScore">{{topScore}}</div>
+            </div>
+            <div class="btn">
+              <button class="again" @click="restart">
+                <i class="fas fa-redo-alt"></i> 再來一次
+              </button>
+              <button class="home" @click="home">返回</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="setting">
         <div class="dashboard">
-            <div>
-                <h4>持有點數</h4>
-                <div class="point">0</div>
-            </div>
-            <div>
-                <h4>歷史最高</h4>
-                <div class="bestScore">0</div>
-            </div>
+          <div>
+            <h4>持有點數</h4>
+            <div class="point">{{point}}</div>
+          </div>
+          <div>
+            <h4>歷史最高</h4>
+            <div class="bestScore">{{topScore}}</div>
+          </div>
         </div>
         <div class="store">
-            <h3>商店</h3>
-            <ul>
-                <li>
-                    <img src="./img/aim1.png" alt="">
-                    <p>預設</p>
-                    <button class="defaultAim">選擇</button>
-                </li>
-                <li>
-                    <img src="./img/aim2.png" alt="">
-                    <p>100點</p>
-                    <button class="buyAim" data-price="10">購買</button>
-                    <button class="chooseAim">選擇</button>
-                </li>
-                <li>
-                    <img src="./img/aim3.png" alt="">
-                    <p>1000點</p>
-                    <button class="buyAim" data-price="15">購買</button>
-                    <button class="chooseAim">選擇</button>
-                </li>
-            </ul>
+          <h3>商店</h3>
+          <ul>
+            <li>
+              <img src="./img/aim0.png" alt="" />
+              <p>預設</p>
+              <button class="chooseAim" @click="chooseAim(0)">選擇</button>
+            </li>
+            <li>
+              <img src="./img/aim1.png" alt="" />
+              <p>20點</p>
+              <button class="buyAim" @click="buyAim(1,5)" v-if="!aimStatus[1]">
+                購買
+              </button>
+              <button
+                class="chooseAim"
+                @click="chooseAim(1)"
+                v-if="aimStatus[1]"
+              >
+                選擇
+              </button>
+            </li>
+            <li>
+              <img src="./img/aim2.png" alt="" />
+              <p>40點</p>
+              <button class="buyAim" @click="buyAim(2,6)" v-if="!aimStatus[2]">
+                購買
+              </button>
+              <button
+                class="chooseAim"
+                @click="chooseAim(2)"
+                v-if="aimStatus[2]"
+              >
+                選擇
+              </button>
+            </li>
+          </ul>
         </div>
         <div class="gameset">
-            <h3>設定</h3>
-            <div class="setVolume">
-                <button class="minus"><i class="fas fa-minus"></i></button>
-                <i class="volume fas fa-volume-up fa-2x"></i>
-                <button class="plus"><i class="fas fa-plus"></i></button>
-            </div>
+          <h3>設定</h3>
+          <div class="setVolume">
+            <button class="minus" @click="minus" v-if="vol>0">
+              <i class="fas fa-minus"></i>
+            </button>
+            <i class="volume fas fa-volume-up fa-2x"></i>
+            <button class="plus" @click="plus" v-if="vol<1">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
         </div>
+      </div>
+      <audio class="gun" src="./sound/shoot.mp3" ref="gun"></audio>
+      <audio class="reload" src="./sound/reload.mp3" ref="reloadAudio"></audio>
+      <audio class="bgMusic" src="./sound/bgmusic.mp3" ref="bgMusic"></audio>
+      <audio class="checkout" src="./sound/checkout.mp3" ref="checkout"></audio>
     </div>
 
-
-    <audio class="gun" src="./sound/shoot.mp3"></audio>
-    <audio class="reload" src="./sound/reload.mp3"></audio>
-    <audio class="bgmusic" src="./sound/bgmusic.mp3"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./js/all.js"></script>
-</body>
+  </body>
 </html>
