@@ -250,6 +250,12 @@ html {
   width: 280px;
   height: 750px;
 }
+@media (max-width:1850px) {
+  .setting {
+    position: relative;
+    margin: 40px auto;
+  }
+}
 .dashboard {
   display: flex;
   justify-content: space-around;
