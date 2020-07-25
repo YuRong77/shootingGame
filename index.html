@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS射擊遊戲</title>
-    <link rel="shortcut icon" href="https://cdn1.iconfinder.com/data/icons/locations-redesign/48/Hunting1-512.png" />
+    <link
+      rel="shortcut icon"
+      href="https://cdn1.iconfinder.com/data/icons/locations-redesign/48/Hunting1-512.png"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
@@ -59,7 +62,11 @@
           </div>
         </div>
       </div>
-      <div class="setting">
+      <div class="setting" ref="setting">
+        <button class="settingBtn" @click="settingOpen">
+          <i class="fas fa-chevron-left" v-if="!settingBtn"></i>
+          <i class="fas fa-chevron-right" v-if="settingBtn"></i>
+        </button>
         <div class="dashboard">
           <div>
             <h4>持有點數</h4>

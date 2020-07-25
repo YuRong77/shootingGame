@@ -4,6 +4,7 @@ const app = new Vue({
     timeUp: true,
     scoreBoard: false,
     reloading: false,
+    settingBtn: false,
     monster: [],
     monsterStatus: [],
     bullet: [],
@@ -172,6 +173,15 @@ const app = new Vue({
         localStorage.setItem(e.key, e.oldValue);
       });
     },
+    settingOpen() {
+      if(!this.settingBtn){
+        this.$refs.setting.style.transform = "translate(0,-50%)"
+        this.settingBtn = true;
+      }else{
+        this.$refs.setting.style.transform = "translate(250px,-50%)"
+        this.settingBtn = false;
+      }
+    }
   },
   mounted() {
     this.setObj();

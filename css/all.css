@@ -9,6 +9,7 @@ html {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  overflow: hidden;
 }
 
 #app {
@@ -17,8 +18,8 @@ html {
 }
 
 .gameboard {
-  max-width: 1200px;
-  height: 750px;
+  width: 1200px;
+  height: 650px;
   background-image: url(../img/bg.png);
   position: relative;
   top: 50%;
@@ -53,7 +54,7 @@ html {
   font-family: "Jokerman";
   font-size: 96px;
   text-shadow: 0 6px 10px #000000d0;
-  margin: 100px 0 180px 0;
+  margin: 100px 0 160px 0;
   -webkit-animation-name: big;
           animation-name: big;
   -webkit-animation-duration: 5s;
@@ -64,7 +65,7 @@ html {
 
 .beforegame p {
   color: #ffffff;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   text-shadow: 0 3px 6px #000000d0;
   -webkit-animation-name: fade;
           animation-name: fade;
@@ -152,7 +153,7 @@ html {
 
 .bat {
   width: 1000px;
-  height: 550px;
+  height: 450px;
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -318,13 +319,32 @@ html {
           transform: translateY(-50%);
   right: 30px;
   width: 280px;
-  height: 750px;
+  height: 650px;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.settingBtn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-24px, -50%);
+          transform: translate(-24px, -50%);
+  width: 25px;
+  background: #384872;
+  color: #ffffff;
+  border: 1px solid #a1a1a1;
+  cursor: pointer;
+  padding: 20px 0;
 }
 
 @media (max-width: 1850px) {
   .setting {
-    position: relative;
-    margin: 40px auto;
+    -webkit-transform: translate(250px, -50%);
+            transform: translate(250px, -50%);
+  }
+  .settingBtn {
+    display: block;
   }
 }
 
@@ -338,7 +358,7 @@ html {
   border-radius: 5px;
   border: 1px solid #a1a1a1;
   padding: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .dashboard h4 {
@@ -358,7 +378,7 @@ html {
   border-radius: 5px;
   border: 1px solid #a1a1a1;
   padding: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .store h3 {
@@ -366,7 +386,8 @@ html {
   text-align: center;
   font-weight: bold;
   border-bottom: 1px solid #a1a1a1;
-  padding-bottom: 30px;
+  margin-top: 0;
+  padding-bottom: 10px;
 }
 
 .store p {
