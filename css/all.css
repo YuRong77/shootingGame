@@ -196,7 +196,7 @@ html {
   right: 50%;
   -webkit-transform: translate(50%, -50%);
           transform: translate(50%, -50%);
-  font-family: "Jokerman";
+  font-family: 'Gloria Hallelujah', cursive;
   font-size: 200px;
   color: #f6d551;
 }
