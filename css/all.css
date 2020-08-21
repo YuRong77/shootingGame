@@ -480,4 +480,28 @@ html {
   color: #ffffff;
   margin: 0 20px;
 }
+
+.tips {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #384872;
+  color: #ffffff;
+}
+
+@media (max-width: 1100px) {
+  .tips {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
 /*# sourceMappingURL=all.css.map */
